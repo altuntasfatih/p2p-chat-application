@@ -41,7 +41,7 @@ class Listener(threading.Thread):
 
     def examinePacket(self,packet):
 
-
+        response = None
         if len(packet) == 22:
             code, field1, field2, key = struct.unpack('b 10s 10s b', packet)
             field1=self.purge(field1)
@@ -49,7 +49,7 @@ class Listener(threading.Thread):
             _log.info("request ---> type:{} ,field1:{} ,field2:{}    [ {} , {} ] ".format(code, field1, field2, self.host,self.port))
 
             #todo add validate manner
-            response=None
+
 
             if code==0:     #register
                 response=self.registerUser(field1,field2)
@@ -58,7 +58,7 @@ class Listener(threading.Thread):
             elif code== 2:   #search
                 response=self.searchUser(field1,field2)
             elif code == 3:  # LOGOUT
-                response = self.searchUser(field1)
+                response = self.logOut(field1)
 
 
         return response
@@ -73,6 +73,7 @@ class Listener(threading.Thread):
             response = struct.pack('b b 15s b', 3, 25, bytes("SuccesfulyExit", 'utf-8'), 15)
             _log.info("response --->type:{} status:{} message:SuccesfulyExit    [ {} , {} ]".format(1, 25, self.host,
                                                                                         self.port))
+
         else:
             response = struct.pack('b b 15s b', 3, 45, bytes("UserNotfound", 'utf-8'), 15)
             _log.info(
