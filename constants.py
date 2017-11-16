@@ -2,8 +2,9 @@ import logging
 import os
 import sys
 DBPATH   ='mongodb://localhost:27017/'
+_onlineList={}
 ROOTPATH = ''
-for i in os.path.dirname(os.path.abspath(__file__)).split('/')[1:-1]:
+for i in os.path.dirname(os.path.abspath(__file__)).split('/')[1:]:
         ROOTPATH = ROOTPATH+'/'+i
 if ROOTPATH not in sys.path:
         sys.path.append(ROOTPATH)

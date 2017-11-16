@@ -2,7 +2,7 @@ from socket import *
 from SocketListener import Listener
 from  constants import getlog
 
-_onlineList={}
+
 "name:ip"
 _port=3131
 _threadList= []

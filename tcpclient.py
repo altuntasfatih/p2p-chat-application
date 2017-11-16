@@ -1,6 +1,6 @@
 from socket import *
 import struct
-
+import sys
 
 
 serverName='localhost'
@@ -10,17 +10,38 @@ user="Fatih"
 
 clientSocket=socket(AF_INET,SOCK_STREAM)
 clientSocket.connect((serverName,serverPort))
-a=5;
-while a>0:
-    username=input("Username: ")
-    packet = struct.pack('b 10s 10s b', 0, bytes(username, 'utf-8'), bytes("1234", 'utf-8'), 15)
+
+while True:
+    options=input("Which: ")
+    username = input("Username: ")
+    packet=''
+
+    if options == "0":
+
+        password = input("password: ")
+        packet = struct.pack('b 10s 10s b', 0, bytes(username, 'utf-8'), bytes(password, 'utf-8'), 15)
+
+    if options == "1":
+
+        password = input("password: ")
+        packet = struct.pack('b 10s 10s b', 1, bytes(username, 'utf-8'), bytes(password, 'utf-8'), 15)
+
+    if options == "2":
+
+        search = input("Search :")
+        packet = struct.pack('b 10s 10s b', 2, bytes(username, 'utf-8'), bytes(search, 'utf-8'), 15)
+
+    if options == "3":  #LOGOUT
+        packet = struct.pack('b 10s 10s b', 3, bytes(username, 'utf-8'),bytes('LOGOUT', 'utf-8'), 15)
+
+
 
     clientSocket.send(packet)
     responsepacket = clientSocket.recv(1024)
 
-    typ,code,message,key = struct.unpack('b b 10s b', responsepacket)
+    typ,code,message,key = struct.unpack('b b 15s b', responsepacket)
     print("Response {} {} {} {}".format(typ,code,message,key))
-    a-=1
+
 
 
 

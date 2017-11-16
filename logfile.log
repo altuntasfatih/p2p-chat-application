@@ -1,0 +1,100 @@
+2017-11-16 14:36:17,752 [registry.py  listJoin  MainThread ] [INFO ]  Server is listing on tcp    [ 0.0.0.0 , 3131 ]
+2017-11-16 14:36:31,435 [registry.py  listJoin  MainThread ] [INFO ]  Server is listing on tcp    [ 0.0.0.0 , 3131 ]
+2017-11-16 14:37:00,928 [registry.py  listJoin  MainThread ] [INFO ]  Server is listing on tcp    [ 0.0.0.0 , 3131 ]
+2017-11-16 14:40:01,876 [registry.py  listJoin  MainThread ] [INFO ]  Connection accepted from    [ 127.0.0.1 , 50737 ]
+2017-11-16 14:40:01,886 [dbmanagenment.py  conectdb  MainThread ] [INFO ]  Connected MongoDB 
+2017-11-16 14:40:06,189 [SocketListener.py  examinePacket  Thread-1 ] [INFO ]  request ---> type:0 ,username:taner ,password:1234    [ 127.0.0.1 , 50737 ] 
+2017-11-16 14:40:06,331 [SocketListener.py  registerUser  Thread-1 ] [INFO ]  response ---> type:0 status:20 message:Registered    [ 127.0.0.1 , 50737 ]
+2017-11-16 14:41:42,454 [SocketListener.py  examinePacket  Thread-1 ] [INFO ]  request ---> type:0 ,username:taner ,password:1234    [ 127.0.0.1 , 50737 ] 
+2017-11-16 14:41:42,458 [dbmanagenment.py  insert  Thread-1 ] [ERROR]  DuplicateKeyError('E11000 duplicate key error collection: P2PApp.authentication index: _id_ dup key: { : "taner" }',)
+2017-11-16 14:42:55,248 [registry.py  listJoin  MainThread ] [INFO ]  Server is listing on tcp    [ 0.0.0.0 , 3131 ]
+2017-11-16 14:43:01,042 [registry.py  listJoin  MainThread ] [INFO ]  Connection accepted from    [ 127.0.0.1 , 50741 ]
+2017-11-16 14:43:01,055 [dbmanagenment.py  conectdb  MainThread ] [INFO ]  Connected MongoDB 
+2017-11-16 14:43:04,726 [SocketListener.py  examinePacket  Thread-1 ] [INFO ]  request ---> type:0 ,username:taner ,password:1234    [ 127.0.0.1 , 50741 ] 
+2017-11-16 14:43:04,777 [SocketListener.py  registerUser  Thread-1 ] [INFO ]  response ---> type:0 status:20 message:Registered    [ 127.0.0.1 , 50741 ]
+2017-11-16 14:43:09,422 [SocketListener.py  examinePacket  Thread-1 ] [INFO ]  request ---> type:0 ,username:caner ,password:1234    [ 127.0.0.1 , 50741 ] 
+2017-11-16 14:43:09,424 [SocketListener.py  registerUser  Thread-1 ] [INFO ]  response ---> type:0 status:20 message:Registered    [ 127.0.0.1 , 50741 ]
+2017-11-16 14:43:12,660 [SocketListener.py  examinePacket  Thread-1 ] [INFO ]  request ---> type:0 ,username:caner ,password:1234    [ 127.0.0.1 , 50741 ] 
+2017-11-16 14:43:12,663 [dbmanagenment.py  insert  Thread-1 ] [ERROR]  DuplicateKeyError('E11000 duplicate key error collection: P2PApp.authentication index: _id_ dup key: { : "caner" }',)
+2017-11-16 14:44:16,337 [registry.py  listJoin  MainThread ] [INFO ]  Server is listing on tcp    [ 0.0.0.0 , 3131 ]
+2017-11-16 14:44:20,336 [registry.py  listJoin  MainThread ] [INFO ]  Server is listing on tcp    [ 0.0.0.0 , 3131 ]
+2017-11-16 14:44:26,816 [registry.py  listJoin  MainThread ] [INFO ]  Connection accepted from    [ 127.0.0.1 , 50753 ]
+2017-11-16 14:44:26,831 [dbmanagenment.py  conectdb  MainThread ] [INFO ]  Connected MongoDB 
+2017-11-16 14:44:29,120 [SocketListener.py  examinePacket  Thread-6 ] [INFO ]  request ---> type:0 ,username:caner ,password:1234    [ 127.0.0.1 , 50753 ] 
+2017-11-16 14:47:02,611 [registry.py  listJoin  MainThread ] [INFO ]  Server is listing on tcp    [ 0.0.0.0 , 3131 ]
+2017-11-16 15:03:31,825 [registry.py  listJoin  MainThread ] [INFO ]  Connection accepted from    [ 192.168.137.1 , 51588 ]
+2017-11-16 15:03:31,831 [dbmanagenment.py  conectdb  MainThread ] [INFO ]  Connected MongoDB 
+2017-11-16 15:03:44,764 [SocketListener.py  examinePacket  Thread-1 ] [INFO ]  request ---> type:0 ,username:caner ,password:1234    [ 192.168.137.1 , 51588 ] 
+2017-11-16 15:03:44,766 [dbmanagenment.py  insert  Thread-1 ] [ERROR]  DuplicateKeyError('E11000 duplicate key error collection: P2PApp.authentication index: _id_ dup key: { : "caner" }',)
+2017-11-16 15:03:44,766 [SocketListener.py  registerUser  Thread-1 ] [INFO ]  response ---> type:0 status:40 message:Duplicate    [ 192.168.137.1 , 51588 ]
+2017-11-16 15:04:21,320 [SocketListener.py  examinePacket  Thread-1 ] [INFO ]  request ---> type:0 ,username:ahmet ,password:kaya    [ 192.168.137.1 , 51588 ] 
+2017-11-16 15:04:21,339 [SocketListener.py  registerUser  Thread-1 ] [INFO ]  response ---> type:0 status:20 message:Registered    [ 192.168.137.1 , 51588 ]
+2017-11-16 15:06:54,238 [registry.py  listJoin  MainThread ] [INFO ]  Connection accepted from    [ 192.168.137.1 , 51602 ]
+2017-11-16 15:06:54,243 [dbmanagenment.py  conectdb  MainThread ] [INFO ]  Connected MongoDB 
+2017-11-16 15:07:16,779 [SocketListener.py  examinePacket  Thread-2 ] [INFO ]  request ---> type:2 ,username:caner ,password:caner    [ 192.168.137.1 , 51602 ] 
+2017-11-16 15:10:04,696 [registry.py  listJoin  MainThread ] [INFO ]  Server is listing on tcp    [ 0.0.0.0 , 3131 ]
+2017-11-16 15:10:17,271 [registry.py  listJoin  MainThread ] [INFO ]  Connection accepted from    [ 192.168.137.1 , 51627 ]
+2017-11-16 15:10:17,277 [dbmanagenment.py  conectdb  MainThread ] [INFO ]  Connected MongoDB 
+2017-11-16 15:10:23,520 [SocketListener.py  examinePacket  Thread-1 ] [INFO ]  request ---> type:1 ,username:ahmet ,password:kaya    [ 192.168.137.1 , 51627 ] 
+2017-11-16 15:10:23,521 [dbmanagenment.py  get_documents  Thread-1 ] [INFO ]  Get User Succesfully
+2017-11-16 15:10:23,524 [SocketListener.py  examinePacket  Thread-1 ] [INFO ]  response --->type:1 status:20 message:Ok    [ Ok , 192.168.137.1 ]
+2017-11-16 15:11:51,384 [registry.py  listJoin  MainThread ] [INFO ]  Server is listing on tcp    [ 0.0.0.0 , 3131 ]
+2017-11-16 15:12:01,905 [registry.py  listJoin  MainThread ] [INFO ]  Connection accepted from    [ 192.168.137.1 , 51629 ]
+2017-11-16 15:12:01,911 [dbmanagenment.py  conectdb  MainThread ] [INFO ]  Connected MongoDB 
+2017-11-16 15:12:08,479 [SocketListener.py  examinePacket  Thread-1 ] [INFO ]  request ---> type:1 ,username:ahmet ,password:kaya    [ 192.168.137.1 , 51629 ] 
+2017-11-16 15:12:08,483 [dbmanagenment.py  get_documents  Thread-1 ] [INFO ]  Get User Succesfully
+2017-11-16 15:12:08,484 [SocketListener.py  examinePacket  Thread-1 ] [INFO ]  response --->type:1 status:20 message:Ok    [ Ok , 192.168.137.1 ]
+2017-11-16 15:58:17,030 [registry.py  listJoin  MainThread ] [INFO ]  Server is listing on tcp    [ 0.0.0.0 , 3131 ]
+2017-11-16 15:59:47,684 [registry.py  listJoin  MainThread ] [INFO ]  Connection accepted from    [ 127.0.0.1 , 51288 ]
+2017-11-16 15:59:47,693 [dbmanagenment.py  conectdb  MainThread ] [INFO ]  Connected MongoDB 
+2017-11-16 15:59:50,973 [SocketListener.py  examinePacket  Thread-1 ] [INFO ]  request ---> type:1 ,username:caner ,password:1234    [ 127.0.0.1 , 51288 ] 
+2017-11-16 15:59:50,973 [dbmanagenment.py  get_documents  Thread-1 ] [INFO ]  Get User Succesfully
+2017-11-16 15:59:50,974 [SocketListener.py  examinePacket  Thread-1 ] [INFO ]  response --->type:1 status:20 message:Ok    [ Ok , 127.0.0.1 ]
+2017-11-16 16:02:19,951 [registry.py  listJoin  MainThread ] [INFO ]  Server is listing on tcp    [ 0.0.0.0 , 3131 ]
+2017-11-16 16:02:31,024 [registry.py  listJoin  MainThread ] [INFO ]  Connection accepted from    [ 127.0.0.1 , 51319 ]
+2017-11-16 16:02:31,039 [dbmanagenment.py  conectdb  MainThread ] [INFO ]  Connected MongoDB 
+2017-11-16 16:02:36,918 [SocketListener.py  examinePacket  Thread-6 ] [INFO ]  request ---> type:1 ,username:caner ,password:1234    [ 127.0.0.1 , 51319 ] 
+2017-11-16 16:03:02,138 [dbmanagenment.py  get_documents  Thread-6 ] [INFO ]  Get User Succesfully
+2017-11-16 16:07:33,528 [registry.py  listJoin  MainThread ] [INFO ]  Server is listing on tcp    [ 0.0.0.0 , 3131 ]
+2017-11-16 16:07:44,608 [registry.py  listJoin  MainThread ] [INFO ]  Connection accepted from    [ 127.0.0.1 , 51336 ]
+2017-11-16 16:07:44,623 [dbmanagenment.py  conectdb  MainThread ] [INFO ]  Connected MongoDB 
+2017-11-16 16:07:50,830 [SocketListener.py  examinePacket  Thread-6 ] [INFO ]  request ---> type:1 ,username:caner ,password:1234    [ 127.0.0.1 , 51336 ] 
+2017-11-16 16:07:54,084 [dbmanagenment.py  get_documents  Thread-6 ] [INFO ]  Get User Succesfully
+2017-11-16 16:11:33,924 [registry.py  listJoin  MainThread ] [INFO ]  Server is listing on tcp    [ 0.0.0.0 , 3131 ]
+2017-11-16 16:11:45,285 [registry.py  listJoin  MainThread ] [INFO ]  Server is listing on tcp    [ 0.0.0.0 , 3131 ]
+2017-11-16 16:16:24,761 [registry.py  listJoin  MainThread ] [INFO ]  Server is listing on tcp    [ 0.0.0.0 , 3131 ]
+2017-11-16 16:16:42,363 [registry.py  listJoin  MainThread ] [INFO ]  Server is listing on tcp    [ 0.0.0.0 , 3131 ]
+2017-11-16 16:16:44,628 [registry.py  listJoin  MainThread ] [INFO ]  Connection accepted from    [ 192.168.137.1 , 51845 ]
+2017-11-16 16:17:57,924 [registry.py  listJoin  MainThread ] [INFO ]  Server is listing on tcp    [ 0.0.0.0 , 3131 ]
+2017-11-16 16:19:07,117 [registry.py  listJoin  MainThread ] [INFO ]  Server is listing on tcp    [ 0.0.0.0 , 3131 ]
+2017-11-16 16:19:13,289 [registry.py  listJoin  MainThread ] [INFO ]  Connection accepted from    [ 127.0.0.1 , 51378 ]
+2017-11-16 16:19:17,571 [SocketListener.py  examinePacket  Thread-6 ] [INFO ]  request ---> type:1 ,username:caner ,password:1234    [ 1 , 2 ] 
+2017-11-16 16:19:22,917 [dbmanagenment.py  get_documents  Thread-6 ] [INFO ]  Get User Succesfully
+2017-11-16 16:23:37,322 [registry.py  listJoin  MainThread ] [INFO ]  Server is listing on tcp    [ 0.0.0.0 , 3131 ]
+2017-11-16 16:23:41,038 [registry.py  listJoin  MainThread ] [INFO ]  Connection accepted from    [ 127.0.0.1 , 51388 ]
+2017-11-16 16:23:50,323 [registry.py  listJoin  MainThread ] [INFO ]  Connection accepted from    [ 127.0.0.1 , 51391 ]
+2017-11-16 16:28:25,383 [registry.py  listJoin  MainThread ] [INFO ]  Server is listing on tcp    [ 0.0.0.0 , 3131 ]
+2017-11-16 16:29:15,299 [registry.py  listJoin  MainThread ] [INFO ]  Connection accepted from    [ 127.0.0.1 , 51899 ]
+2017-11-16 16:29:24,167 [SocketListener.py  examinePacket  Thread-1 ] [INFO ]  request ---> type:0 ,username:haydar ,password:1234    [ 1 , 2 ] 
+2017-11-16 16:29:24,170 [SocketListener.py  registerUser  Thread-1 ] [INFO ]  response ---> type:0 status:20 message:Registered    [ 1 , 2 ]
+2017-11-16 16:30:20,615 [registry.py  listJoin  MainThread ] [INFO ]  Server is listing on tcp    [ 0.0.0.0 , 3131 ]
+2017-11-16 16:30:25,824 [registry.py  listJoin  MainThread ] [INFO ]  Connection accepted from    [ 127.0.0.1 , 51903 ]
+2017-11-16 16:30:37,440 [SocketListener.py  examinePacket  Thread-1 ] [INFO ]  request ---> type:1 ,username:caner ,password:1234    [ 1 , 2 ] 
+2017-11-16 16:30:37,440 [dbmanagenment.py  get_documents  Thread-1 ] [INFO ]  Get User Succesfully
+2017-11-16 16:30:37,441 [SocketListener.py  examinePacket  Thread-1 ] [INFO ]  response --->type:1 status:20 message:Ok    [ Ok , 1 ]
+2017-11-16 16:31:01,361 [SocketListener.py  examinePacket  Thread-1 ] [INFO ]  request ---> type:2 ,username:caner ,password:caner    [ 1 , 2 ] 
+2017-11-16 16:37:27,794 [registry.py  listJoin  MainThread ] [INFO ]  Server is listing on tcp    [ 0.0.0.0 , 3131 ]
+2017-11-16 16:37:31,716 [registry.py  listJoin  MainThread ] [INFO ]  Connection accepted from    [ 127.0.0.1 , 51915 ]
+2017-11-16 16:47:53,427 [registry.py  listJoin  MainThread ] [INFO ]  Connection accepted from    [ 127.0.0.1 , 52315 ]
+2017-11-16 16:59:09,875 [registry.py  listJoin  MainThread ] [INFO ]  Server is listing on tcp    [ 0.0.0.0 , 3131 ]
+2017-11-16 16:59:13,751 [registry.py  listJoin  MainThread ] [INFO ]  Connection accepted from    [ 127.0.0.1 , 52443 ]
+2017-11-16 16:59:28,605 [SocketListener.py  examinePacket  Thread-1 ] [INFO ]  request ---> type:1 ,username:caner ,password:1234    [ 1 , 2 ] 
+2017-11-16 16:59:28,605 [dbmanagenment.py  get_documents  Thread-1 ] [INFO ]  Get User Succesfully
+2017-11-16 16:59:28,607 [SocketListener.py  loginUser  Thread-1 ] [INFO ]  response --->type:1 status:20 message:Ok    [ Ok , 1 ]
+2017-11-16 16:59:51,055 [SocketListener.py  examinePacket  Thread-1 ] [INFO ]  request ---> type:1 ,username:haydar ,password:1234    [ 1 , 2 ] 
+2017-11-16 16:59:51,056 [dbmanagenment.py  get_documents  Thread-1 ] [INFO ]  Get User Succesfully
+2017-11-16 16:59:51,057 [SocketListener.py  loginUser  Thread-1 ] [INFO ]  response --->type:1 status:20 message:Ok    [ Ok , 1 ]
+2017-11-16 17:00:05,274 [SocketListener.py  examinePacket  Thread-1 ] [INFO ]  request ---> type:2 ,username:haydar ,password:caner    [ 1 , 2 ] 
+2017-11-16 17:00:05,274 [SocketListener.py  searchUser  Thread-1 ] [INFO ]  response --->type:1 status:23 message:Found    [ 1 , 2 ]
+2017-11-16 17:00:17,701 [SocketListener.py  examinePacket  Thread-1 ] [INFO ]  request ---> type:2 ,username:haydar ,password:deli    [ 1 , 2 ] 
+2017-11-16 17:00:17,701 [SocketListener.py  searchUser  Thread-1 ] [INFO ]  response --->type:1 status:23 message:Notfound    [ 1 , 2 ]

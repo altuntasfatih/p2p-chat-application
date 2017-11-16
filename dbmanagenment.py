@@ -23,7 +23,7 @@ class DbClient(object):
         try:
             self.client = mongo.MongoClient(DBPATH)
             info = self.client.server_info()
-            self.log.info("Connected MongoDB ")
+            #self.log.info("Connected MongoDB ")
             return True
         except mongo.errors.ServerSelectionTimeoutError as err:
             self.log.error(repr(err))
@@ -86,7 +86,6 @@ class DbClient(object):
             return 0
         except mongo.errors.DuplicateKeyError as  exp:
             self.log.error(repr(exp))
-            self.update(item)
             return -1           #duplicate
         except Exception as  exp:
             self.log.error(repr(exp))
