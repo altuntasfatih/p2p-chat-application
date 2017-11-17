@@ -38,7 +38,6 @@ class Listener(threading.Thread):
             return message[0:index]
 
 
-
     def examinePacket(self,packet):
 
         response = None
@@ -49,7 +48,6 @@ class Listener(threading.Thread):
             _log.info("request ---> type:{} ,field1:{} ,field2:{}    [ {} , {} ] ".format(code, field1, field2, self.host,self.port))
 
             #todo add validate manner
-
 
             if code==0:     #register
                 response=self.registerUser(field1,field2)
@@ -63,22 +61,18 @@ class Listener(threading.Thread):
 
         return response
 
-
-
     def validate(self):
         return True
     def logOut(self,username):
         response=''
         if username in _onlineList:
-            response = struct.pack('b b 15s b', 3, 25, bytes("SuccesfulyExit", 'utf-8'), 15)
-            _log.info("response --->type:{} status:{} message:SuccesfulyExit    [ {} , {} ]".format(1, 25, self.host,
-                                                                                        self.port))
+            response = struct.pack('b b 15s b', 3, 25, bytes("succesfulyexit", 'utf-8'), 15)
+            self.getResponse(25)
 
         else:
-            response = struct.pack('b b 15s b', 3, 45, bytes("UserNotfound", 'utf-8'), 15)
-            _log.info(
-                "response --->type:{} status:{} message:UserNotfound    [ {} , {} ]".format(1, 45, self.host,
-                                                                                  self.port))
+            response = struct.pack('b b 15s b', 3, 45, bytes("usernotfound", 'utf-8'), 15)
+            self.getResponse(45)
+
 
         return response
 
@@ -86,26 +80,23 @@ class Listener(threading.Thread):
         result = self.checkAuthentication(username, password)
         response=''
         if result != -1:
-            response = struct.pack('b b 15s b', 1, 20, bytes("Ok", 'utf-8'), 15)
+            response = struct.pack('b b 15s b', 1, 21, bytes("succesfullogin", 'utf-8'), 15)
             _onlineList[result['_id']] = self.host
             print(_onlineList)
-            _log.info("response --->type:{} status:{} message:Ok    [ {} , {} ]".format(1, 20, 'Ok', self.host,
-                                                                                        self.port))
+            self.getResponse(21)
         else:
-            response = struct.pack('b b 15s b', 1, 41, bytes("Invalid", 'utf-8'), 15)
-            _log.info(
-                "response --->type:{} status:{} message:Invalid    [ {} , {} ]".format(1, 20, 'Invalid', self.host,
-                                                                                      self.port))
+            response = struct.pack('b b 15s b', 1, 41, bytes("invalidcredent", 'utf-8'), 15)
+            self.getResponse(41)
 
         return response
     def searchUser(self,current,search):
         response=''
         if search in _onlineList:
             response = struct.pack('b b 15s b', 2, 22, bytes(_onlineList[search], 'utf-8'), 15)
-            _log.info("response --->type:{} status:{} message:Found    [ {} , {} ]".format(1, 23, self.host, self.port))
+            self.getResponse(22)
         else:
-            response = struct.pack('b b 15s b', 2, 44, bytes('Notfound', 'utf-8'), 15)
-            _log.info("response --->type:{} status:{} message:Notfound    [ {} , {} ]".format(1, 23, self.host, self.port))
+            response = struct.pack('b b 15s b', 2, 44, bytes('notfound', 'utf-8'), 15)
+            self.getResponse(44)
 
         return response
 
@@ -119,14 +110,14 @@ class Listener(threading.Thread):
         })
         packet=''
         if result==0:
-            _log.info("response ---> type:{} status:{} message:Registered    [ {} , {} ]".format(0,20,self.host, self.port))
-            packet = struct.pack('b b 15s b',0, 20, bytes('Registered', 'utf-8'), 15)
+            self.getResponse(20)
+            packet = struct.pack('b b 15s b',0, 20, bytes('registered', 'utf-8'), 15)
         elif result==-1:
-            _log.info("response ---> type:{} status:{} message:Duplicate    [ {} , {} ]".format(0,40,self.host, self.port))
-            packet = struct.pack('b b 15s b',0, 40, bytes('Duplicate', 'utf-8'), 15)
+            self.getResponse(40)
+            packet = struct.pack('b b 15s b',0, 40, bytes('duplicate', 'utf-8'), 15)
         else:
-            _log.info("response ---> type:{} status:{} message:ErorServer    [ {} , {} ]".format(0,50,self.host, self.port))
-            packet = struct.pack('b b 15s b',0, 50, bytes('ErorServer', 'utf-8'), 15)
+            self.getResponse(50)
+            packet = struct.pack('b b 15s b',0, 50, bytes('erorserver', 'utf-8'), 15)
         return packet
 
     def checkAuthentication(self,username,password):
@@ -135,3 +126,28 @@ class Listener(threading.Thread):
             "password":password
         })
         return result
+
+    def getResponse(self,code):
+
+        if code==20:
+            _log.info("response ---> type:{} status:{} message:registered    [ {} , {} ]".format(0,20,self.host, self.port))
+        elif code==21:
+            _log.info("response --->type:{} status:{} message:succesfullogin    [ {} , {} ]".format(1, 21, 'succesfullogin', self.host,
+                                                                                        self.port))
+        elif code==22:
+            _log.info("response --->type:{} status:{} message:found    [ {} , {} ]".format(2, 22, self.host, self.port))
+        elif code==25:
+            _log.info("response --->type:{} status:{} message:succesfulyexit    [ {} , {} ]".format(3, 25, self.host,self.port))
+        elif code==40:
+            _log.info("response ---> type:{} status:{} message:duplicate    [ {} , {} ]".format(0,40,self.host, self.port))
+        elif code==41:
+            _log.info( "response --->type:{} status:{} message:invalidcredent    [ {} , {} ]".format(1, 41, self.host,self.port))
+        elif code==44:
+            _log.info("response --->type:{} status:{} message:notfound    [ {} , {} ]".format(2, 44, self.host, self.port))
+        elif code==45:
+            _log.info(
+                "response --->type:{} status:{} message:usernotfound    [ {} , {} ]".format(3, 45, self.host,self.port))
+        elif code == 50:
+            _log.info("response ---> type:{} status:{} message:erorserver    [ {} , {} ]".format(0,50,self.host, self.port))
+
+
