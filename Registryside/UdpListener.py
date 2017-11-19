@@ -2,6 +2,7 @@ import threading
 from socket import *
 
 from core import constants as cn
+from core.constants import _onlineList
 
 _log = cn.getlog()
 
@@ -23,11 +24,8 @@ class ListenerUdp(threading.Thread):
         while True:
             packet, addr = self.socket.recvfrom(2048)
             result=self.examinePacket(packet,addr)
-            #_log.info("request ---> type:{} ,message   [ {} , {} ] ".format(code, username, password, self.host[0],self.host[1]))
-            #print(" {} received from {} ".format(message, clientAddress))
 
-
-            self.socket.sendto(result, addr)
+            #self.socket.sendto(result, addr)
 
         self.socket.close()
 
@@ -39,23 +37,21 @@ class ListenerUdp(threading.Thread):
         if index!=-1:
             return message[0:index]
 
-    def examinePacket(self,packet):
+    def examinePacket(self,packet,addr):
 
         typ, username, message, key = struct.unpack('b 10s 10s b', packet)
-        _log.info("request ---> type:{} ,username:{} ,message:{}    [ {} , {} ] ".format(typ, username, message,
-                                                                                          self.host[0], self.host[1]))
-
-        username=self.purge(username)
+        username = self.purge(username)
         message = self.purge(message)
 
-        packet = struct.pack('b b 10s b', 1, 21, bytes("OkHello", 'utf-8'), 15)
+        _log.info("request ---> type:{} ,username:{} ,message:{}    [ {} , {} ] ".format(typ, username, message,
+                                                                                         addr[0], addr[1]))
+        if username in _onlineList:
+            _log.info("type:{} status:{} message:OkHello    [ {} , {} ]".format(typ, 24, addr[0], addr[1]))
+            _onlineList[username]=[_onlineList[username][0],_onlineList[username][1]+1]
+        else:
+            _log.info("type:{} status:{} message:UserNotFound    [ {} , {} ]".format(typ, 46, addr[0], addr[1]))
 
-        _log.info("response --->type:{} status:{} message:OkHello    [ {} , {} ]".format(typ,21, self.host[0], self.host[1]))
-
-        return packet
-
-
-
+        print(_onlineList)
     def validate(self):
         return True
 

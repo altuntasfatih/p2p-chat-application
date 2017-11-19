@@ -69,7 +69,8 @@ class Listener(threading.Thread):
         response=''
         if username in _onlineList:
             response = struct.pack('b b 15s b', 3, 25, bytes("succesfulyexit", 'utf-8'), 15)
-            self.printLog(25)
+            self.printLog(23)
+            del(_onlineList[username])
 
         else:
             response = struct.pack('b b 15s b', 3, 45, bytes("usernotfound", 'utf-8'), 15)
@@ -80,8 +81,8 @@ class Listener(threading.Thread):
         result = self.checkAuthentication(username, password)
         response=''
         if result != -1:
-            response = struct.pack('b b 15s b', 1, 21, bytes("succesfullogin", 'utf-8'), 15)
-            _onlineList[result['_id']] = self.host
+            response = struct.pack('b b 15s b', 1, 21, bytes("succesfullyogin", 'utf-8'), 15)
+            _onlineList[result['_id']] = [self.host,0]
             print(_onlineList)
             self.printLog(21)
         else:
@@ -111,7 +112,7 @@ class Listener(threading.Thread):
             response = struct.pack('b b 15s b',0, 20, bytes('registered', 'utf-8'), 15)
         elif result==-1:
             self.printLog(40)
-            response = struct.pack('b b 15s b',0, 40, bytes('duplicate', 'utf-8'), 15)
+            response = struct.pack('b b 15s b',0, 40, bytes('duplicatecredent', 'utf-8'), 15)
         else:
             self.printLog(50)
             response = struct.pack('b b 15s b',0, 50, bytes('erorserver', 'utf-8'), 15)
@@ -135,10 +136,10 @@ class Listener(threading.Thread):
             _log.info("response --->type:{} status:{} message:succesfullogin    [ {} , {} ]".format(1, 21, 'succesfullogin', self.host,                                                                                       self.port))
         elif code==22:
             _log.info("response --->type:{} status:{} message:found    [ {} , {} ]".format(2, 22, self.host, self.port))
-        elif code==25:
-            _log.info("response --->type:{} status:{} message:succesfulyexit    [ {} , {} ]".format(3, 25, self.host,self.port))
+        elif code==23:
+            _log.info("response --->type:{} status:{} message:succesfulyexit    [ {} , {} ]".format(3, 23, self.host,self.port))
         elif code==40:
-            _log.info("response ---> type:{} status:{} message:duplicate    [ {} , {} ]".format(0,40,self.host, self.port))
+            _log.info("response ---> type:{} status:{} message:duplicatecredent    [ {} , {} ]".format(0,40,self.host, self.port))
         elif code==41:
             _log.info( "response --->type:{} status:{} message:invalidcredent    [ {} , {} ]".format(1, 41, self.host,self.port))
         elif code==44:

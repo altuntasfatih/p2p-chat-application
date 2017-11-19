@@ -2,6 +2,7 @@ from socket import *
 
 from Registryside.SocketListener import Listener
 from Registryside.UdpListener import ListenerUdp
+from Registryside.Checkonlinelist import CheckOnline
 from  core.constants import getlog
 
 "name:ip"
@@ -9,13 +10,19 @@ _portTcp=3131
 _portUdp=5151
 _threadList= []
 _log=getlog()
-
+udpthread=None
+checkerthread=None
 
 
 def initalize():
-    thread=ListenerUdp(port=_portUdp)
-    thread.start()
+    global checkerthread
+    global udpthread
+    udpthread=ListenerUdp(port=_portUdp)
+    udpthread.start()
+    checkerthread = CheckOnline(port=_portUdp)
+    checkerthread.start()
     listentPeers()
+
 
 
 def listentPeers():

@@ -2,7 +2,7 @@ from socket import *
 import struct
 import sys
 
-def main():
+def tcp():
 
     serverName='127.0.0.1'
     serverPort=3131
@@ -34,8 +34,7 @@ def main():
             packet = struct.pack('b 10s 10s b', 3, bytes(username, 'utf-8'),bytes('LOGOUT', 'utf-8'), 15)
 
         if options == "4":  # LOGOUT
-            sendHello()
-
+            sendHello(username)
 
 
         clientSocket.send(packet)
@@ -48,18 +47,22 @@ def main():
 
 
 
-def sendHello():
+def sendHello(user):
+    serverName = '127.0.0.1'
 
     udp = 5151
 
     clientSocket = socket(AF_INET, SOCK_DGRAM)
-    packet = struct.pack('b 10s 10s b', 3, bytes(user, 'utf-8'),bytes("HELLO", 'utf-8'), 15)
+    packet = struct.pack('b 10s 10s b', 5, bytes(user, 'utf-8'),bytes("HELLO", 'utf-8'), 15)
+    a=10
+    while a>0:
+        clientSocket.sendto(packet, (serverName, udp))
+        a-=1
 
-    clientSocket.sendto(packet, (serverName, udp))
+    #modifiedMessage, serverAddress = clientSocket.recvfrom(2048)
 
-    modifiedMessage, serverAddress = clientSocket.recvfrom(2048)
-
-    print("Message: {}  - from {}".format(modifiedMessage, serverAddress))
+    #print("Message: {}  - from {}".format(modifiedMessage, serverAddress))
 
 
-main()
+
+tcp()
