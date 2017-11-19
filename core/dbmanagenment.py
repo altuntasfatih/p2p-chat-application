@@ -6,8 +6,10 @@
 """
 
 import pymongo as mongo
-from constants import  getlog,DBPATH
 from pymongo.errors import BulkWriteError
+
+from core.constants import  getlog,DBPATH
+
 
 class DbClient(object):
 

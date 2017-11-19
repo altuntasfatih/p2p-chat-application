@@ -1,19 +1,28 @@
 from socket import *
-from SocketListener import Listener
-from  constants import getlog
 
+from Registryside.SocketListener import Listener
+from Registryside.UdpListener import ListenerUdp
+from  core.constants import getlog
 
 "name:ip"
-_port=3131
+_portTcp=3131
+_portUdp=5151
 _threadList= []
 _log=getlog()
 
 
-def listJoin():
+
+def initalize():
+    thread=ListenerUdp(port=_portUdp)
+    thread.start()
+    listentPeers()
+
+
+def listentPeers():
     serverSocket = socket(AF_INET, SOCK_STREAM)
-    serverSocket.bind(('', _port))
+    serverSocket.bind(('', _portTcp))
     serverSocket.listen(1)
-    _log.info("Server is listing on tcp    [ 0.0.0.0 , {} ]".format(_port))
+    _log.info("Server is listing on tcp    [ 0.0.0.0 , {} ]".format(_portTcp))
 
     while True:
         connectionSocket, addr = serverSocket.accept()
@@ -23,4 +32,4 @@ def listJoin():
         _threadList.append(thread)
 
 
-listJoin()
+initalize()

@@ -1,6 +1,8 @@
 import threading
-import constants as cn
 from socket import *
+
+from core import constants as cn
+
 _log = cn.getlog()
 
 import struct
@@ -27,17 +29,8 @@ class ListenerUdp(threading.Thread):
 
             self.socket.sendto(result, addr)
 
-
-
         self.socket.close()
 
-
-
-    def purge(self,message):
-        message = message.decode('utf-8')
-        index = message.find('\x00')
-        if index!=-1:
-            return message[0:index]
 
 
     def purge(self,message):
@@ -66,25 +59,5 @@ class ListenerUdp(threading.Thread):
     def validate(self):
         return True
 
-
-    def registerUser(self,username,password):
-        result=self.db.insert({
-            "_id": username,
-            "name": username,
-            "password": password,
-            "hostlist": [self.host]
-
-        })
-        packet=''
-        if result==0:
-            _log.info("Succesfuly registered  {}   {}".format(username,self.host))
-            packet = struct.pack('b b 10s b',0, 20, bytes('Ok', 'utf-8'), 15)
-        elif result==-1:
-            _log.info("Duplicate username  {}   {}".format(username,self.host))
-            packet = struct.pack('b b 10s b',0, 40, bytes('Eror', 'utf-8'), 15)
-        else:
-            _log.info("Unknown eror ocured on server   {} {}".format(username,self.host))
-            packet = struct.pack('b b 10s b',0, 50, bytes('Erserver', 'utf-8'), 15)
-        return packet
 
 

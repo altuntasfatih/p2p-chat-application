@@ -1,6 +1,6 @@
 from socket import *
 
-from  SocketListener import  SocketListener
+from  Registryside.SocketListener import  SocketListener
 
 _threadlist_ = []
 

@@ -1,7 +1,9 @@
 import threading
-import constants as cn
-from dbmanagenment import DbClient
-from constants import _onlineList
+
+from core import constants as cn
+from core.constants import _onlineList
+from core.dbmanagenment import DbClient
+
 _log = cn.getlog()
 
 import struct
@@ -67,13 +69,11 @@ class Listener(threading.Thread):
         response=''
         if username in _onlineList:
             response = struct.pack('b b 15s b', 3, 25, bytes("succesfulyexit", 'utf-8'), 15)
-            self.getResponse(25)
+            self.printLog(25)
 
         else:
             response = struct.pack('b b 15s b', 3, 45, bytes("usernotfound", 'utf-8'), 15)
-            self.getResponse(45)
-
-
+            self.printLog(45)
         return response
 
     def loginUser(self,username,password):
@@ -83,22 +83,19 @@ class Listener(threading.Thread):
             response = struct.pack('b b 15s b', 1, 21, bytes("succesfullogin", 'utf-8'), 15)
             _onlineList[result['_id']] = self.host
             print(_onlineList)
-            self.getResponse(21)
+            self.printLog(21)
         else:
             response = struct.pack('b b 15s b', 1, 41, bytes("invalidcredent", 'utf-8'), 15)
-            self.getResponse(41)
-
+            self.printLog(41)
         return response
+
     def searchUser(self,current,search):
-        response=''
         if search in _onlineList:
-            response = struct.pack('b b 15s b', 2, 22, bytes(_onlineList[search], 'utf-8'), 15)
-            self.getResponse(22)
+            self.printLog(22)
+            return struct.pack('b b 15s b', 2, 22, bytes(_onlineList[search], 'utf-8'), 15)
         else:
-            response = struct.pack('b b 15s b', 2, 44, bytes('notfound', 'utf-8'), 15)
-            self.getResponse(44)
-
-        return response
+            self.printLog(44)
+            return struct.pack('b b 15s b', 2, 44, bytes('notfound', 'utf-8'), 15)
 
     def registerUser(self,username,password):
         result=self.db.insert({
@@ -108,17 +105,17 @@ class Listener(threading.Thread):
             "hostlist": [self.host]
 
         })
-        packet=''
+        response=''
         if result==0:
-            self.getResponse(20)
-            packet = struct.pack('b b 15s b',0, 20, bytes('registered', 'utf-8'), 15)
+            self.printLog(20)
+            response = struct.pack('b b 15s b',0, 20, bytes('registered', 'utf-8'), 15)
         elif result==-1:
-            self.getResponse(40)
-            packet = struct.pack('b b 15s b',0, 40, bytes('duplicate', 'utf-8'), 15)
+            self.printLog(40)
+            response = struct.pack('b b 15s b',0, 40, bytes('duplicate', 'utf-8'), 15)
         else:
-            self.getResponse(50)
-            packet = struct.pack('b b 15s b',0, 50, bytes('erorserver', 'utf-8'), 15)
-        return packet
+            self.printLog(50)
+            response = struct.pack('b b 15s b',0, 50, bytes('erorserver', 'utf-8'), 15)
+        return response
 
     def checkAuthentication(self,username,password):
         result=self.db.get_documents(filter={
@@ -127,13 +124,15 @@ class Listener(threading.Thread):
         })
         return result
 
-    def getResponse(self,code):
 
+    
+                     
+            
+    def printLog(self,code):
         if code==20:
             _log.info("response ---> type:{} status:{} message:registered    [ {} , {} ]".format(0,20,self.host, self.port))
         elif code==21:
-            _log.info("response --->type:{} status:{} message:succesfullogin    [ {} , {} ]".format(1, 21, 'succesfullogin', self.host,
-                                                                                        self.port))
+            _log.info("response --->type:{} status:{} message:succesfullogin    [ {} , {} ]".format(1, 21, 'succesfullogin', self.host,                                                                                       self.port))
         elif code==22:
             _log.info("response --->type:{} status:{} message:found    [ {} , {} ]".format(2, 22, self.host, self.port))
         elif code==25:
