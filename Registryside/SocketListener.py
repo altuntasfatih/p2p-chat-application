@@ -54,7 +54,7 @@ class Listener(threading.Thread):
             if code==0:     #register
                 response=self.registerUser(field1,field2)
             elif code==1:     #login
-                response = self.loginUser(field1,field2)
+                response =self.loginUser(field1,field2)
             elif code== 2:   #search
                 response=self.searchUser(field1,field2)
             elif code == 3:  # LOGOUT

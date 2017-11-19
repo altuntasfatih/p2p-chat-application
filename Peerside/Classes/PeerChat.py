@@ -30,7 +30,7 @@ class PeerChat(socket,threading):
     def run(self):
 
         gm = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        gt = threading.Thread(target=get_message, args=(gm,self.ip,self.port))
+        gt = threading.Thread(target=get_message , args=(gm,self.ip,self.port))
         gt.start()
 
         sm = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
