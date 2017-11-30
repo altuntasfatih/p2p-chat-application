@@ -1,6 +1,6 @@
 import threading
 from socket import *
-
+import time
 from core import constants as cn
 from core.constants import _onlineList
 
@@ -47,7 +47,7 @@ class ListenerUdp(threading.Thread):
                                                                                          addr[0], addr[1]))
         if username in _onlineList:
             _log.info("type:{} status:{} message:OkHello    [ {} , {} ]".format(typ, 24, addr[0], addr[1]))
-            _onlineList[username]=[_onlineList[username][0],_onlineList[username][1]+1]
+            _onlineList[username]=[_onlineList[username][0],round(time.time())]
         else:
             _log.info("type:{} status:{} message:UserNotFound    [ {} , {} ]".format(typ, 46, addr[0], addr[1]))
 

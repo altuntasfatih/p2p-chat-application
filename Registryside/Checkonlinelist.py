@@ -11,14 +11,13 @@ class CheckOnline(threading.Thread):
     def __init__(self,port):
         threading.Thread.__init__(self)
     def run(self):
-        repeating = 0
         _log.info("Checker Thread started")
         while True:
 
-            time.sleep(10) #5sn
-
+            time.sleep(1) #1sn
+            ctime=round(time.time())
             for key, value in _onlineList.items():
-                if value[1]<5:
+                if (ctime-value[1]) >  10:
                     #del(_onlineList[key])
                     _log.info("The {} is removed Online list ".format(key))
 

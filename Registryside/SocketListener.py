@@ -43,8 +43,8 @@ class Listener(threading.Thread):
     def examinePacket(self,packet):
 
         response = None
-        if len(packet) == 22:
-            code, field1, field2, key = struct.unpack('b 10s 10s b', packet)
+        if len(packet) == 27:
+            code, field1, field2, key = struct.unpack('b 10s 15s b', packet)
             field1=self.purge(field1)
             field2 = self.purge(field2)
             _log.info("request ---> type:{} ,field1:{} ,field2:{}    [ {} , {} ] ".format(code, field1, field2, self.host,self.port))
