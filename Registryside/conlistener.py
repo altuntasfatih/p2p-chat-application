@@ -1,8 +1,11 @@
 import threading
 import time
 from core import constants as cn
-from core.constants import ONLINEUSERS,DBNAME,COLLECTIONS
+from core.constants import ONLINEUSERS,DBNAME,COLLECTIONS,DES_
 from core.dbmanagenment import DbClient
+
+
+
 
 LOG = cn.getlog()
 
@@ -21,13 +24,21 @@ class Listener(threading.Thread):
     def stop(self):
         self.__stop = True
 
+    def e_d_ncrypt(self,packet,flag):
+        if flag:
+            pass
+            #return DES_.encrypt(packet)
+        else:
+            pass
+            #return DES_.decrypt(packet)
+        return packet
+
     def run(self):
         while True:
-
-            packet = self.socket.recv(1024)
+            packet = self.e_d_ncrypt(self.socket.recv(1024),flag=False)
             if not packet: break
             result = self.examinePacket(packet)
-            self.socket.send(result)
+            self.socket.send(self.e_d_ncrypt(result,flag=True))
 
         LOG.info(" Connection closed [ {} , {} ]".format(self.host, self.port))
         self.socket.close()
@@ -73,11 +84,13 @@ class Listener(threading.Thread):
         if username in ONLINEUSERS:
             response = struct.pack('b b 15s b', 3, 25, bytes("succesfulyexit", 'utf-8'), 15)
             self.printLog(23)
+
             del (ONLINEUSERS[username])
 
         else:
             response = struct.pack('b b 15s b', 3, 45, bytes("usernotfound", 'utf-8'), 15)
             self.printLog(45)
+
         return response
 
     def allUser(self, username):
@@ -113,7 +126,7 @@ class Listener(threading.Thread):
     def searchUser(self, current, search):
         if search in ONLINEUSERS:
             self.printLog(22)
-            return struct.pack('b b 15s b', 2, 22, bytes(ONLINEUSERS[search], 'utf-8'), 15)
+            return struct.pack('b b 15s b', 2, 22, bytes(ONLINEUSERS[search][0], 'utf-8'), 15)
         else:
             self.printLog(44)
             return struct.pack('b b 15s b', 2, 44, bytes('notfound', 'utf-8'), 15)

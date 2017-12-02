@@ -1,6 +1,8 @@
 import logging
 import os
 import sys
+from Crypto.Cipher import DES
+
 
 
 
@@ -14,6 +16,9 @@ ROOTPATH = ''
 COLLECTIONS="authentication"
 DBNAME="P2PApp"
 TIMEOUT=60
+DES_=DES.new('qwe123ac', DES.MODE_CFB, b'\x17E;5[v\xdc\x8a')
+
+
 
 
 

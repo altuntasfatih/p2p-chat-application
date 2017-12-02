@@ -17,10 +17,12 @@ class Checker(threading.Thread):
 
             time.sleep(1) #1sn
             ctime=round(time.time())
-            for key, value in ONLINEUSERS.items():
-                if (ctime-value[1]) >  cn.TIMEOUT:
+
+            for key in list(ONLINEUSERS):
+                if (ctime-ONLINEUSERS[key][1]) >  cn.TIMEOUT:
                     del(ONLINEUSERS[key])
                     LOG.info("The {} is removed online list becuse of timeout ".format(key))
+
 
             self.controlConnections()
 
@@ -28,7 +30,7 @@ class Checker(threading.Thread):
     def controlConnections(self):
         for index,item in enumerate(CONECTIONS):
             if item.isAlive is False:
-                print(item.getName(), ' ', item.isAlive())
+                print("Removed connections",item.getName(), ' ', item.isAlive())
                 CONECTIONS.remove(index)
 
 

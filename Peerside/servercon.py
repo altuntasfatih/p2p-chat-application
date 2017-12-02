@@ -2,6 +2,8 @@ from socket import *
 import struct
 import threading
 import  time
+from core.constants import DES_
+
 
 class ServerChannel():
     def __init__(self, ip, portTcp,portUDp):
@@ -27,6 +29,16 @@ class ServerChannel():
 
     def closeChannel(self):
         self.sock.close()
+
+    def e_d_ncrypt(self, packet, flag):
+        if flag:
+            pass
+            #return DES_.encrypt(packet)
+        else:
+            pass
+            #return DES_.decrypt(packet)
+        return packet
+
 
     def purge(self, message):
         message = message.decode('utf-8')
@@ -56,8 +68,8 @@ class ServerChannel():
                 packet = struct.pack('b 10s 15s b', 4, bytes(self.username, 'utf-8'), bytes('All', 'utf-8'), 15)
 
 
-            self.sock.send(packet)
-            recived_packet = self.sock.recv(1024)
+            self.sock.send(self.e_d_ncrypt(packet,flag=True))
+            recived_packet = self.e_d_ncrypt(self.sock.recv(1024),flag=False)
 
 
             typ, code, message, key = struct.unpack('b b 15s b', recived_packet[0:18])
@@ -101,7 +113,6 @@ class ServerChannel():
 
         result=self.operations(which=opt,username=username,password=password,search_name=password)
         self.username = username
-        print(result)
 
         if result[0]==21: #succefuly login
            #self.udpThread.start()

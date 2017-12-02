@@ -43,13 +43,13 @@ class ListenerUdp(threading.Thread):
         username = self.purge(username)
         message = self.purge(message)
 
-        _log.info("request ---> type:{} ,username:{} ,message:{}    [ {} , {} ] ".format(typ, username, message,
+        _log.info("Request ---> Type:{} ,Username:{} ,Message:{}    [ {} , {} ] ".format(typ, username, message,
                                                                                          addr[0], addr[1]))
         if username in ONLINEUSERS:
-            _log.info("type:{} status:{} message:OkHello    [ {} , {} ]".format(typ, 24, addr[0], addr[1]))
+            _log.info("Type:{} Status:{} message:OkHello    [ {} , {} ]".format(typ, 24, addr[0], addr[1]))
             ONLINEUSERS[username]=[ONLINEUSERS[username][0],round(time.time())]
         else:
-            _log.info("type:{} status:{} message:UserNotFound    [ {} , {} ]".format(typ, 46, addr[0], addr[1]))
+            _log.info("Type:{} Status:{} message:UserNotFound    [ {} , {} ]".format(typ, 46, addr[0], addr[1]))
 
         print(ONLINEUSERS)
     def validate(self):
