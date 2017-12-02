@@ -3,7 +3,11 @@ import socket
 import struct
 import time
 
-tcp_ip = '192.168.137.93'
+from Peerside.ChannelServer import ServerChannel
+
+
+ServerChannel
+tcp_ip = 'localhost'
 tcp_port = 3131
 buffer_size = 1024
 

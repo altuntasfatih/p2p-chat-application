@@ -1,9 +1,23 @@
 import logging
 import os
 import sys
+
+
+
 DBPATH   ='mongodb://localhost:27017/'
-_onlineList={}
+
+ONLINEUSERS={}
+CONECTIONS= []
+TCP=3131
+UDP=5151
 ROOTPATH = ''
+COLLECTIONS="authentication"
+DBNAME="P2PApp"
+TIMEOUT=60
+
+
+
+
 for i in os.path.dirname(os.path.abspath(__file__)).split('/')[1:]:
         ROOTPATH = ROOTPATH+'/'+i
 if ROOTPATH not in sys.path:

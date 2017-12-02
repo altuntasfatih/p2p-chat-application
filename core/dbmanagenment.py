@@ -1,9 +1,4 @@
-"""
-    MongoDb database managment, it serves for crud operation on database
-    In addition information about collection and database
-    'mongodb://arquanum:qPuDqX2e@138.68.92.9:27017/admin'
-    mongo -u arquanum  138.68.92.9/admin -p qPuDqX2e
-"""
+
 
 import pymongo as mongo
 from pymongo.errors import BulkWriteError
@@ -70,7 +65,7 @@ class DbClient(object):
         try:
             collection = self.get_collection()
             res = collection.insert_one(item)
-            self.log.info("Inserted Succesfully: %s "%str(res.inserted_id))
+            self.log.info("User Registered Succesfuly: %s "%str(res.inserted_id))
             return 0
         except mongo.errors.DuplicateKeyError as  exp:
             self.log.error(repr(exp))
@@ -98,20 +93,12 @@ class DbClient(object):
         collection = self.get_collection()
         try:
             result = collection.find(filter)
-            self.log.info("Get User Succesfully")
+            #self.log.info("Get User Succesfully")
             return list(result)[0]
         except Exception as  exp:
-            self.log.error(repr(exp))
+            #self.log.error(repr(exp))
             return -1
 
-    def getUser(self, item):
-        try:
-            empCol = self.collection.find()
-            print('\n All data from EmployeeData Database \n')
-            for emp in empCol:
-                print(emp)
-        except  Exception as  e:
-            print(str(e))
 
 
 """

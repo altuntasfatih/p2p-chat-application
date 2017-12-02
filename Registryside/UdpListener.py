@@ -2,7 +2,7 @@ import threading
 from socket import *
 import time
 from core import constants as cn
-from core.constants import _onlineList
+from core.constants import ONLINEUSERS
 
 _log = cn.getlog()
 
@@ -45,13 +45,13 @@ class ListenerUdp(threading.Thread):
 
         _log.info("request ---> type:{} ,username:{} ,message:{}    [ {} , {} ] ".format(typ, username, message,
                                                                                          addr[0], addr[1]))
-        if username in _onlineList:
+        if username in ONLINEUSERS:
             _log.info("type:{} status:{} message:OkHello    [ {} , {} ]".format(typ, 24, addr[0], addr[1]))
-            _onlineList[username]=[_onlineList[username][0],round(time.time())]
+            ONLINEUSERS[username]=[ONLINEUSERS[username][0],round(time.time())]
         else:
             _log.info("type:{} status:{} message:UserNotFound    [ {} , {} ]".format(typ, 46, addr[0], addr[1]))
 
-        print(_onlineList)
+        print(ONLINEUSERS)
     def validate(self):
         return True
 
