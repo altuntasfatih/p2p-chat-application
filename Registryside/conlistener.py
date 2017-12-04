@@ -3,7 +3,7 @@ import time
 from core import constants as cn
 from core.constants import ONLINEUSERS,DBNAME,COLLECTIONS,DES_
 from core.dbmanagenment import DbClient
-
+import socket
 
 
 
@@ -22,6 +22,7 @@ class Listener(threading.Thread):
             self.db = DbClient(DBNAME, COLLECTIONS)
 
     def stop(self):
+
         self.__stop = True
 
     def e_d_ncrypt(self,packet,flag):
@@ -35,10 +36,14 @@ class Listener(threading.Thread):
 
     def run(self):
         while True:
-            packet = self.e_d_ncrypt(self.socket.recv(1024),flag=False)
-            if not packet: break
-            result = self.examinePacket(packet)
-            self.socket.send(self.e_d_ncrypt(result,flag=True))
+            try:
+
+                packet = self.e_d_ncrypt(self.socket.recv(1024),flag=False)
+                if not packet: break
+                result = self.examinePacket(packet)
+                self.socket.send(self.e_d_ncrypt(result,flag=True))
+            except socket.error as e:
+                break
 
         LOG.info(" Connection closed [ {} , {} ]".format(self.host, self.port))
         self.socket.close()
@@ -116,7 +121,7 @@ class Listener(threading.Thread):
         if result != -1:
             response = struct.pack('b b 15s b', 1, 21, bytes("succesfullyogin", 'utf-8'), 15)
             ONLINEUSERS[result['_id']] = [self.host, round(time.time())]
-            print(ONLINEUSERS)
+            #print(ONLINEUSERS)
             self.printLog(21)
         else:
             response = struct.pack('b b 15s b', 1, 41, bytes("invalidcredent", 'utf-8'), 15)

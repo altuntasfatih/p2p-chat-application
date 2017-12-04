@@ -10,7 +10,7 @@ DBPATH   ='mongodb://localhost:27017/'
 
 ONLINEUSERS={}
 CONECTIONS= []
-TCP=3131
+TCP=3133
 UDP=5151
 ROOTPATH = ''
 COLLECTIONS="authentication"

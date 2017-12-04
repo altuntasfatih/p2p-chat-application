@@ -1,6 +1,6 @@
 from socket import *
 
-from  Registryside.SocketListener import SocketListener
+from  Registryside.conlistener import Listener
 
 _threadlist_ = []
 
@@ -13,6 +13,7 @@ print("Server is listing")
 
 while True:
     connectionSocket,addr = serverSocket.accept()
-    thread = SocketListener(host=addr,socket=connectionSocket)
+    print("Connection accepted from    [ {} , {} ]".format(addr[0], addr[1]))
+    thread = Listener(host=addr,socket=connectionSocket)
     thread.start()
     _threadlist_.append(thread)

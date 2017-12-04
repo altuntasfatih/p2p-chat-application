@@ -9,7 +9,7 @@ LOG = cn.getlog()
 
 class Checker(threading.Thread):
 
-    def __init__(self,port):
+    def __init__(self):
         threading.Thread.__init__(self)
     def run(self):
         LOG.info("Checker Thread started")

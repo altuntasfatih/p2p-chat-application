@@ -16,9 +16,9 @@ checkerthread=None
 def initalize():
     global checkerthread
     global udpthread
-    udpthread=ListenerUdp(port=TCP)
+    udpthread=ListenerUdp(port=UDP)
     udpthread.start()
-    checkerthread = Checker(port=UDP)
+    checkerthread = Checker()
     checkerthread.start()
     listentPeers()
 

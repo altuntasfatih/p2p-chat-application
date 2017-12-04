@@ -20,7 +20,7 @@ class DbClient(object):
         try:
             self.client = mongo.MongoClient(DBPATH)
             info = self.client.server_info()
-            self.log.info("Connected MongoDB ")
+            #self.log.info("Connected MongoDB ")
             return True
         except mongo.errors.ServerSelectionTimeoutError as err:
             self.log.error(repr(err))
