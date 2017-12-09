@@ -2,7 +2,8 @@ from socket import *
 import struct
 import threading
 import  time
-from core.constants import DES_
+
+#from core.constants import DES_
 
 
 class ServerChannel():

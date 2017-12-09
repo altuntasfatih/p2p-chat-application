@@ -6,7 +6,7 @@ from core.dbmanagenment import DbClient
 import socket
 
 
-
+#it is already login add
 LOG = cn.getlog()
 
 import struct

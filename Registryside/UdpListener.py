@@ -51,7 +51,7 @@ class ListenerUdp(threading.Thread):
         else:
             _log.info("Type:{} Status:{} message:UserNotFound    [ {} , {} ]".format(typ, 46, addr[0], addr[1]))
 
-        print(ONLINEUSERS)
+        #print(ONLINEUSERS)
     def validate(self):
         return True
 
