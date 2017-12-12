@@ -1,12 +1,12 @@
 import threading
 import time
 from core import constants as cn
-from core.constants import ONLINEUSERS,DBNAME,COLLECTIONS,DES_
+from core.constants import ONLINEUSERS,DBNAME,COLLECTIONS
 from core.dbmanagenment import DbClient
 import socket
 
 
-#it is already login add
+
 LOG = cn.getlog()
 
 import struct

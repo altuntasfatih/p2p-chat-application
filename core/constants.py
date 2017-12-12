@@ -1,8 +1,6 @@
 import logging
 import os
 import sys
-from Crypto.Cipher import DES
-
 
 
 
@@ -16,10 +14,6 @@ ROOTPATH = ''
 COLLECTIONS="authentication"
 DBNAME="P2PApp"
 TIMEOUT=60
-DES_=DES.new('qwe123ac', DES.MODE_CFB, b'\x17E;5[v\xdc\x8a')
-
-
-
 
 
 
@@ -36,7 +30,7 @@ def getlog():
     if (len(rootLogger.handlers) > 0):
         return rootLogger
     rootLogger.setLevel(logging.INFO)
-    fileHandler = logging.FileHandler(ROOTPATH+'/logfile.log')
+    fileHandler = logging.FileHandler('logfile.log')
     fileHandler.setFormatter(logFormatter)
     rootLogger.addHandler(fileHandler)
     consoleHandler = logging.StreamHandler()

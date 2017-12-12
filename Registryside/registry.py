@@ -1,7 +1,7 @@
 from socket import *
 
 from Registryside.conlistener import Listener
-from Registryside.udplistener import ListenerUdp
+from Registryside.UdpListener import ListenerUdp
 from Registryside.inspector import Checker
 from  core.constants import getlog,TCP,UDP,CONECTIONS
 
