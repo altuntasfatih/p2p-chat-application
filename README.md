@@ -68,11 +68,16 @@ We have 5 type request between server and client:
     | Message (10s)  |
     | chat_list      |
 
-* 1  Notify and Request:
+* 1  Notify and Request: <br>
     In Notify, type will be “1”, Message will be “New User” and Data will be IP address.
     Also we are sending current chat_list to handle group chat. If new user appears, old
     users will be informed.
-       In Request, type will be “0”, Message will be “CHAT REQUEST” and
-       Data will be username.
+      
+    | Type will be 1 | 
+    | -------------  |       In Request, type will be “0”, Message will be “CHAT REQUEST” and Data will be username.
+    | Type (b)       |
+    | Data (15s)     |
+    | Message (10s)  |
+    | chat_list      |
 
 <img width="905" alt="screen shot 2017-12-19 at 00 48 02" src="https://user-images.githubusercontent.com/13722649/34129783-6a51f638-e456-11e7-8dfc-35597ca3df25.png">
