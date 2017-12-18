@@ -47,34 +47,36 @@ send a message, message will be sent everyone in the **chat_list**.
 
 We have 5 type request between server and client:
 
-* 0 Register : In data part, we are sending “password”.
-* 1 Login: In data part, we are sending “password”.
-* 2 Search: In data part, we are sending the username which we want to search. We
+*  Register : In data part, we are sending “password”.
+*  Login: In data part, we are sending “password”.
+*  Search: In data part, we are sending the username which we want to search. We
     never use the request. Instead of we used “all online”.
-* 3 Logout: In data part, we are sending ‘LOGOUT’ message.
-* 4 All Online: In data part, we are sending ‘All’ message.
+*  Logout: In data part, we are sending ‘LOGOUT’ message.
+*  All Online: In data part, we are sending ‘All’ message.
 
 <img width="668" alt="screen shot 2017-12-19 at 00 38 39" src="https://user-images.githubusercontent.com/13722649/34129405-11906292-e455-11e7-8b51-6781447c7be1.png">
 
 
 ### We have 2 different package type between client and client:
 
-* 0. Message package:
-    
-    | Type will be 0 | 
-    | -------------  |
-    | Type (b)       |
-    | Data (15s)     |
-    | Message (10s)  |
-    | chat_list      |
+*  Message package:
 
-* 1  Notify and Request: <br>
+    | Type will be 0 | 
+    | -------------  |       
+    | Type (b)       |
+    | Username (10s) |
+    | Message (100s  |
+    
+    
+
+*   Notify and Request: <br>
     In Notify, type will be “1”, Message will be “New User” and Data will be IP address.
     Also we are sending current chat_list to handle group chat. If new user appears, old
     users will be informed.
-      
+    <br>In Request, type will be “0”, Message will be “CHAT REQUEST” and Data will be username. 
+    
     | Type will be 1 | 
-    | -------------  |       In Request, type will be “0”, Message will be “CHAT REQUEST” and Data will be username.
+    | -------------  |
     | Type (b)       |
     | Data (15s)     |
     | Message (10s)  |
