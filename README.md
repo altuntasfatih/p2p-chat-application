@@ -59,9 +59,9 @@ We have 5 type request between server and client:
 
 ### We have 2 different package type between client and client:
 
-* 0. Message package:**
+* 0. Message package:
     Type will be 0.
-* 1. Notify and Request:**
+* 1  Notify and Request:
     In Notify, type will be “1”, Message will be “New User” and Data will be IP address.
     Also we are sending current chat_list to handle group chat. If new user appears, old
     users will be informed.
