@@ -57,51 +57,15 @@ We have 5 type request between server and client:
 <img width="668" alt="screen shot 2017-12-19 at 00 38 39" src="https://user-images.githubusercontent.com/13722649/34129405-11906292-e455-11e7-8b51-6781447c7be1.png">
 
 
-We have 2 different package type between client and client:
+### We have 2 different package type between client and client:
 
-**0. Message package:**
+* 0. Message package:**
     Type will be 0.
-**1. Notify and Request:**
+* 1. Notify and Request:**
     In Notify, type will be “1”, Message will be “New User” and Data will be IP address.
     Also we are sending current chat_list to handle group chat. If new user appears, old
     users will be informed.
        In Request, type will be “0”, Message will be “CHAT REQUEST” and
        Data will be username.
 
-```
-Note: We don’t get response package after sending message package.
-```
-```
-Type (b)
-Data (15s)
-Message (10s)
-chat_list
-```
-```
-Type (b)
-Username (10s)
-Message (100s)
-```
-```
-Type (b)
-Data (15s)
-Message (10s)
-chat_list
-```
-```
-Type (b)
-Username (10s)
-Message (100s)
-```
-```
-Type (b)
-Status (b)
-Message (15s)
-```
-```
-REQUEST
-```
-```
-RESPONSE
-```
-
+<img width="905" alt="screen shot 2017-12-19 at 00 48 02" src="https://user-images.githubusercontent.com/13722649/34129783-6a51f638-e456-11e7-8dfc-35597ca3df25.png">
