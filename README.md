@@ -65,7 +65,7 @@ We have 5 type request between server and client:
     | -------------  |       
     | Type (b)       |
     | Username (10s) |
-    | Message (100s  |
+    | Message (100s) |
     
     
 
