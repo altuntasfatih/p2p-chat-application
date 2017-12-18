@@ -54,24 +54,8 @@ We have 5 type request between server and client:
 **3. Logout:** In data part, we are sending ‘LOGOUT’ message.
 **4. All Online:** In data part, we are sending ‘All’ message.
 
-```
-Type (b)
-Username (10s)
-Data (15s)
-Extra(b)
-```
-```
-Type (b)
-Code (b)
-Message (15s)
-Key(b)
-```
-```
-REQUEST
-```
-```
-RESPONSE
-```
+<img width="668" alt="screen shot 2017-12-19 at 00 38 39" src="https://user-images.githubusercontent.com/13722649/34129405-11906292-e455-11e7-8b51-6781447c7be1.png">
+
 
 We have 2 different package type between client and client:
 
