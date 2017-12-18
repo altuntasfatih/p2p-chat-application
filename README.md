@@ -60,12 +60,13 @@ We have 5 type request between server and client:
 ### We have 2 different package type between client and client:
 
 * 0. Message package:
-    Type will be 0.
-
-| Type (b)      |
-| Data (15s)    |
-| Message (10s) |
-| chat_list     |
+    
+    | Type will be 0 | 
+    | -------------  |
+    | Type (b)       |
+    | Data (15s)     |
+    | Message (10s)  |
+    | chat_list      |
 
 * 1  Notify and Request:
     In Notify, type will be “1”, Message will be “New User” and Data will be IP address.
